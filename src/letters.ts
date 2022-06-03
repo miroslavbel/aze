@@ -33,6 +33,42 @@ export enum LetterE {
   Z,
 }
 
+export type VowelLetterT =
+  | LetterE.A
+  | LetterE.E
+  | LetterE.Ə
+  | LetterE.I
+  | LetterE.İ
+  | LetterE.O
+  | LetterE.Ö
+  | LetterE.U
+  | LetterE.Ü;
+
+export type ConsonantLetterT =
+  | LetterE.B
+  | LetterE.C
+  | LetterE.Ç
+  | LetterE.D
+  | LetterE.F
+  | LetterE.G
+  | LetterE.Ğ
+  | LetterE.H
+  | LetterE.X
+  | LetterE.J
+  | LetterE.K
+  | LetterE.Q
+  | LetterE.L
+  | LetterE.M
+  | LetterE.N
+  | LetterE.P
+  | LetterE.R
+  | LetterE.S
+  | LetterE.Ş
+  | LetterE.T
+  | LetterE.V
+  | LetterE.Y
+  | LetterE.Z;
+
 export interface LetterI {
   /**
    * Returns the underlying letter as a member of {@link LetterE}.
@@ -51,17 +87,6 @@ export interface LetterI {
    */
   asCyrillic(): string;
 }
-
-export type VowelLetterT =
-  | LetterE.A
-  | LetterE.E
-  | LetterE.Ə
-  | LetterE.I
-  | LetterE.İ
-  | LetterE.O
-  | LetterE.Ö
-  | LetterE.U
-  | LetterE.Ü;
 
 export class Vowel implements LetterI {
   private readonly data: VowelLetterT;
