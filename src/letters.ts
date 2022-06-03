@@ -51,3 +51,14 @@ export interface LetterI {
    */
   asCyrillic(): string;
 }
+
+export type VowelLetterT =
+  | LetterE.A
+  | LetterE.E
+  | LetterE.Ə
+  | LetterE.I
+  | LetterE.İ
+  | LetterE.O
+  | LetterE.Ö
+  | LetterE.U
+  | LetterE.Ü;
