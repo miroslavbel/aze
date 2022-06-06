@@ -96,6 +96,10 @@ export interface VowelInfoI {
   roundedness: VowelRoundedness;
 }
 
+export interface ConsonantInfoI {
+  voice: ConsonantVoice;
+}
+
 export interface LetterI {
   /**
    * Returns the underlying letter as a member of {@link LetterE}.
@@ -433,6 +437,21 @@ export class Consonant implements LetterI {
         return "ј";
       case LetterE.Z:
         return "з";
+    }
+  }
+  /**
+   * Returns phonetical info about the consonant used to perform consonant harmony.
+   *
+   * If the consonant is not used in consonant harmony null will be returned.
+   */
+  public getInfo(): ConsonantInfoI | null {
+    switch (this.data) {
+      case LetterE.K:
+        return { voice: ConsonantVoice.Voiceless };
+      case LetterE.Q:
+        return { voice: ConsonantVoice.Voiced };
+      default:
+        return null;
     }
   }
 }
