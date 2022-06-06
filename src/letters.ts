@@ -117,6 +117,10 @@ export interface LetterI {
    * @see {@link https://en.wikipedia.org/wiki/Azerbaijani_alphabet#Transliteration|Azerbaijani alphabet}
    */
   asCyrillic(): string;
+  /**
+   * Retruns info used to perform harmony if the letter has one.
+   */
+  getHarmonyInfo(): VowelInfoI | ConsonantInfoI | null;
 }
 
 export class Vowel implements LetterI {
@@ -207,7 +211,7 @@ export class Vowel implements LetterI {
   /**
    * Returns phonetical info about the vowel used to perform vowel harmony.
    */
-  public getInfo(): VowelInfoI {
+  public getHarmonyInfo(): VowelInfoI {
     let backness = undefined;
     let height = undefined;
     let roundedness = undefined;
@@ -444,7 +448,7 @@ export class Consonant implements LetterI {
    *
    * If the consonant is not used in consonant harmony null will be returned.
    */
-  public getInfo(): ConsonantInfoI | null {
+  public getHarmonyInfo(): ConsonantInfoI | null {
     switch (this.data) {
       case LetterE.K:
         return { voice: ConsonantVoice.Voiceless };
