@@ -69,6 +69,33 @@ export type ConsonantLetterT =
   | LetterE.Y
   | LetterE.Z;
 
+export enum VowelHeight {
+  High,
+  Mid,
+  Low,
+}
+
+export enum VowelBackness {
+  Front,
+  Back,
+}
+
+export enum VowelRoundedness {
+  Rounded,
+  Unrounded,
+}
+
+export enum ConsonantVoice {
+  Voiced,
+  Voiceless,
+}
+
+export interface VowelInfoI {
+  height: VowelHeight;
+  backness: VowelBackness;
+  roundedness: VowelRoundedness;
+}
+
 export interface LetterI {
   /**
    * Returns the underlying letter as a member of {@link LetterE}.
@@ -172,6 +199,56 @@ export class Vowel implements LetterI {
       case LetterE.Ü:
         return "ү";
     }
+  }
+  /**
+   * Returns phonetical info about the vowel used to perform vowel harmony.
+   */
+  public getInfo(): VowelInfoI {
+    let backness = undefined;
+    let height = undefined;
+    let roundedness = undefined;
+    switch (this.data) {
+      case LetterE.İ:
+      case LetterE.Ü:
+      case LetterE.E:
+      case LetterE.Ö:
+      case LetterE.Ə:
+        backness = VowelBackness.Front;
+        break;
+      default:
+        backness = VowelBackness.Back;
+        break;
+    }
+    switch (this.data) {
+      case LetterE.Ə:
+      case LetterE.A:
+        height = VowelHeight.Low;
+        break;
+      case LetterE.E:
+      case LetterE.Ö:
+      case LetterE.O:
+        height = VowelHeight.Mid;
+        break;
+      default:
+        height = VowelHeight.High;
+        break;
+    }
+    switch (this.data) {
+      case LetterE.Ü:
+      case LetterE.Ö:
+      case LetterE.U:
+      case LetterE.O:
+        roundedness = VowelRoundedness.Rounded;
+        break;
+      default:
+        roundedness = VowelRoundedness.Unrounded;
+        break;
+    }
+    return {
+      height: height,
+      backness: backness,
+      roundedness: roundedness,
+    };
   }
 }
 
